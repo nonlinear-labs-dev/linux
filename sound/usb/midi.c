@@ -214,6 +214,8 @@ static int snd_usbmidi_urb_error(const struct urb *urb)
 	case -ETIME:
 	case -EILSEQ:
 		return -EIO;
+	case -EPIPE:
+		return -EPIPE;
 	default:
 		dev_err(&urb->dev->dev, "urb status %d\n", urb->status);
 		return 0; /* continue */
